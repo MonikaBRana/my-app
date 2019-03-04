@@ -1,0 +1,62 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img *ngIf = "showList" width="300" alt="Angular Logo" src="https://cdn.vox-cdn.com/thumbor/j2UXicrDMY49FKIYX_q4lcxRqLg=/0x0:1536x864/920x613/filters:focal(646x310:890x554):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/58953911/star_wars_logo_new_tall.0.jpg">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Mercury'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvGDQuYi1KlOFRWFXqCjduQ3gmPp_Zc0EuXqcDcdkJiM0uPrYc">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Venus'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRej8hzgazMnr1aDRSZtqPKKoQAjqN1z7pWEid0NGfxvymf_AWV">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Earth'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCQQszYcckp0hdEaW6UUmbhjiQjYt6UIs3K5trStHt_UspLVasKA">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Mars'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQXGyYT2FnisIjO4RCbGVvsTNXe-o5xKwN00xKacGwkPIicwx">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Jupiter'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXUYaXnfaMoMX1yGUyPHkpOtQaUR07-05xxxVioHNqVIo_vqyhHg">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Saturn'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_sejWdTjMstXFJ97tv6tSauwITeoLPJRW-RSUN_XFgxP_h60">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Uranus'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1EBCoZqNS0_S-w5BZvFUuPzNGZXTcZvfGu6fydSuoaLSXRo3Eew">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Neptune'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRhWGhPGFs-d6FOq-63-rto7HnteoanN7g20CTwO0h1PWUrutI">
+  <img *ngIf = "showDetails && plannetDtl.name == 'Pluto'" width="300" alt="Angular Logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2nrVZz7suh3TJrGKfcakcl0YYw2zK3MhyOq_rLkXgAZ1DCphv">
+</div>
+<div >
+<div *ngIf = "showList" >
+    <label>Filter By:</label>
+    <input type ="text" [(ngModel)]='listFilter' />
+  </div>
+<h2 *ngIf = "showList">Here are list of plannets available in the galaxy: </h2>
+<div *ngIf = "showList">
+  <table>
+    <tr>
+        <th>Name</th>
+        <th>Population</th>
+        <th>Terrain Details</th>
+    </tr>
+    <tr *ngFor = "let plannet of filteredPlannets" (click) = "showPlannetDetails(plannet)">
+        <td>{{plannet.name}}</td>
+        <td>{{plannet.population}}</td>
+        <td>{{plannet.trnDtls}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf = "showDetails">
+  <h2>Details of plannet {{plannetDtl.name}}</h2>
+
+      <div>
+        <label>Name : </label> 
+        <span>{{plannetDtl.name}}</span> 
+      </div>
+      <div>
+          <label>Population : </label>
+          <span>{{plannetDtl.population}}</span> 
+      </div>
+      <div>
+          <label>Terrain Details : </label> 
+          <span>{{plannetDtl.trnDtls}}</span> 
+      </div>
+      <div>
+          <label>Additional Information : </label> 
+          <span>{{plannetDtl.additionalInfo}}</span> 
+      </div>
+      <div>
+        <Button (click) ="onBackClick()">Back</Button>
+      </div>
+  </div>
+
+<router-outlet></router-outlet>
